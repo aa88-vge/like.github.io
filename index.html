@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨年约会申请</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        .container {
+            text-align: center;
+            width: 400px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .emoji {
+            font-size: 80px;
+            margin-bottom: 30px;
+            transition: all 0.5s ease;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .accept {
+            background-color: #28a745;
+            color: white;
+        }
+        .reject {
+            background-color: #dc3545;
+            color: white;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .result.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>你愿意和我去约会吗</h1>
+        <p>XXX向你发起了一份跨年约会申请，是否同意？</p >
+        <div class="emoji" id="emoji">😳</div>
+        <div class="buttons">
+            <button class="accept" id="acceptBtn">接受</button>
+            <button class="reject" id="rejectBtn">拒绝</button>
+        </div>
+        <div class="result" id="result">太棒了！一起跨年吧~</div>
+    </div>
+
+    <script>
+        const rejectBtn = document.getElementById('rejectBtn');
+        const acceptBtn = document.getElementById('acceptBtn');
+        const emoji = document.getElementById('emoji');
+        const result = document.getElementById('result');
+
+        // 拒绝按钮躲避逻辑
+        rejectBtn.addEventListener('mouseover', function() {
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 100;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            rejectBtn.style.position = 'absolute';
+            rejectBtn.style.left = newX + 'px';
+            rejectBtn.style.top = newY + 'px';
+        });
+
+        // 接受按钮逻辑
+        acceptBtn.addEventListener('click', function() {
+            emoji.textContent = '😃';
+            result.classList.add('show');
+        });
+    </script>
+</body>
+</html>
